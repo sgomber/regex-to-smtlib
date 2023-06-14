@@ -12,12 +12,12 @@ A tool to translate regular expressions to smt-lib constraints
 
     Command:
     ```
-    PYTHONPATH=/Users/sgomber/Desktop/Temp/regex-to-smtlib python3 src/convert.py '"2" ++ ("3" | "1"*)'
+    PYTHONPATH=/Users/sgomber/Desktop/Temp/regex-to-smtlib python3 src/convert.py '2(3|1*)'
     ```
 
     In action:
     ```
-    Desktop/Temp/regex-to-smtlib >> PYTHONPATH=/Users/sgomber/Desktop/Temp/regex-to-smtlib python3 src/convert.py '"2" ++ ("3" | "1"*)'
+    Desktop/Temp/regex-to-smtlib >> PYTHONPATH=/Users/sgomber/Desktop/Temp/regex-to-smtlib python3 src/convert.py '2(3|1*)'            
     (re.++ (str.to_re "2") (re.union (str.to_re "3") (re.* (str.to_re "1"))))
     ```
 
