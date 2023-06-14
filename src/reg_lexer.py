@@ -6,6 +6,7 @@ tokens = (
    'KSTAR',
    'LPAREN',
    'RPAREN',
+   'DOT',
    'CHAR',
    'END'
 )
@@ -15,7 +16,8 @@ t_KSTAR   = r'\*'
 t_KPLUS   = r'\+'
 t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
-t_CHAR    = r'([^\|\*\+\(\)\$])' # All except the special characters
+t_DOT     = r'\.'
+t_CHAR    = r'([^\|\*\+\(\)\$\.])' # All except the special characters
 t_END     = r'\$'
 t_ignore  = ' \t'
 

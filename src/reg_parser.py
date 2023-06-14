@@ -38,9 +38,13 @@ def p_s3(p):
 
 def p_s4(p):
     '''s4 : CHAR
+          | DOT
           | LPAREN s1 RPAREN'''
     if len(p) == 2:
-        p[0] = create_regex_from_char(p[1])
+        if p[1] == ".":
+            p[0] = create_all_char_regex()
+        else:
+            p[0] = create_regex_from_char(p[1])
     else:
         p[0] = p[2]
 

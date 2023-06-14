@@ -12,3 +12,6 @@ def create_kplus_regex(r1):
 
 def create_regex_from_char(c):
     return f"(str.to_re \"{c}\")"
+
+def create_all_char_regex():
+    return "(re.allchar)"
