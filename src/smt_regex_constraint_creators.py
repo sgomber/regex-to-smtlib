@@ -5,8 +5,12 @@ def create_concat_regex(r_lis):
     regex = regex + ")"
     return regex
 
-def create_union_regex(r1, r2):
-    return f"(re.union {r1} {r2})"
+def create_union_regex(r_lis):
+    regex = "(re.union"
+    for r in r_lis:
+        regex = regex + " " + r
+    regex = regex + ")"
+    return regex
 
 def create_kstar_regex(r1):
     return f"(re.* {r1})"

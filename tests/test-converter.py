@@ -36,6 +36,11 @@ class TestRegexConvertor(unittest.TestCase):
         smtlib = '(re.union (re.++ (str.to_re "2") (str.to_re "3")) (re.* (str.to_re "1")))'
         self.assertEqual(self.convertor.convert(regex), smtlib)
 
+    def test_adv_union(self):
+        regex = '1|2*3|3'
+        smtlib = '(re.union (str.to_re "1") (re.++ (re.* (str.to_re "2")) (str.to_re "3")) (str.to_re "3"))'
+        self.assertEqual(self.convertor.convert(regex), smtlib)
+
     def test_paren_union(self):
         regex = '2(3|a*)'
         smtlib = '(re.++ (str.to_re "2") (re.union (str.to_re "3") (re.* (str.to_re "a"))))'

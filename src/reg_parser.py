@@ -6,15 +6,24 @@ def p_s(p):
     '''
     s : s1 END
     '''
-    p[0] = p[1]
+    p[0] = p[1][1]
 
 def p_s1(p):
     '''s1 : s1 UNION s2
           | s2'''
+    
+    # Note: s1 is a tuple -> (list of regex, combined_regex)
+    # Where list of regex is the list of all regular expressions it is combined from
+    # and the combined_regex is the combined regular expression.
     if len(p) == 4:
-        p[0] = create_union_regex(p[1], p[3][1])
+        regex_lis = p[1][0]
+        regex_lis.append(p[3][1])
+        combined_regex = create_union_regex(regex_lis)
+        p[0] = (regex_lis, combined_regex)
     else:
-        p[0] = p[1][1]
+        regex = p[1][1]
+        regex_lis = [regex]
+        p[0] = (regex_lis, regex)
 
 def p_s2(p):
     '''s2 : s2 s3
@@ -29,7 +38,9 @@ def p_s2(p):
         combined_regex = create_concat_regex(regex_lis)
         p[0] = (regex_lis, combined_regex)
     else:
-        p[0] = ([p[1]],p[1])
+        regex = p[1]
+        regex_lis = [regex]
+        p[0] = (regex_lis, regex)
 
 def p_s3(p):
     '''s3 : s4 KSTAR
@@ -53,7 +64,7 @@ def p_s4(p):
         else:
             p[0] = create_regex_from_char(p[1])
     else:
-        p[0] = p[2]
+        p[0] = p[2][1]
 
 # Error rule for syntax errors
 def p_error(p):
