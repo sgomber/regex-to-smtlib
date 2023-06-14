@@ -43,7 +43,7 @@ class TestRegexConvertor(unittest.TestCase):
 
     def test_allchar_star(self):
         regex = '.*'
-        smtlib = '(re.* (re.allchar))'
+        smtlib = '(re.* re.allchar)'
         self.assertEqual(self.convertor.convert(regex), smtlib)
 
 if __name__ == '__main__':
