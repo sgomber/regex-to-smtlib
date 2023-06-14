@@ -28,7 +28,7 @@ class TestRegexConvertor(unittest.TestCase):
 
     def test_basic_concat(self):
         regex = '231*'
-        smtlib = '(re.++ (re.++ (str.to_re "2") (str.to_re "3")) (re.* (str.to_re "1")))'
+        smtlib = '(re.++ (str.to_re "2") (str.to_re "3") (re.* (str.to_re "1")))'
         self.assertEqual(self.convertor.convert(regex), smtlib)
 
     def test_basic_union(self):

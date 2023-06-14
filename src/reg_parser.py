@@ -12,17 +12,24 @@ def p_s1(p):
     '''s1 : s1 UNION s2
           | s2'''
     if len(p) == 4:
-        p[0] = create_union_regex(p[1], p[3])
+        p[0] = create_union_regex(p[1], p[3][1])
     else:
-        p[0] = p[1]
+        p[0] = p[1][1]
 
 def p_s2(p):
     '''s2 : s2 s3
           | s3'''
+    
+    # Note: s2 is a tuple -> (list of regex, combined_regex)
+    # Where list of regex is the list of all regular expressions it is combined from
+    # and the combined_regex is the combined regular expression.
     if len(p) == 3:
-        p[0] = create_concat_regex(p[1], p[2])
+        regex_lis = p[1][0]
+        regex_lis.append(p[2])
+        combined_regex = create_concat_regex(regex_lis)
+        p[0] = (regex_lis, combined_regex)
     else:
-        p[0] = p[1]
+        p[0] = ([p[1]],p[1])
 
 def p_s3(p):
     '''s3 : s4 KSTAR
