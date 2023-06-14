@@ -32,7 +32,7 @@ A tool to translate regular expressions to smt-lib constraints
 
 ## To Dos
 
-
+- [ ] Optimize the generated regex for char sequences ( (re.++ (str.to_re "a") (str.to_re "b")) -> (str.to_re "ab"))
 - [ ] Character Sets
 - [ ] Anchoring (^?)
 - [ ] Escaped Characters
