@@ -2,6 +2,12 @@ from ply.src.ply import yacc
 from src.reg_lexer import tokens
 from src.smt_regex_constraint_creators import *
 
+def p_s(p):
+    '''
+    s : s1 END
+    '''
+    p[0] = p[1]
+
 def p_s1(p):
     '''s1 : s1 UNION s2
           | s2'''
@@ -11,10 +17,10 @@ def p_s1(p):
         p[0] = p[1]
 
 def p_s2(p):
-    '''s2 : s2 CONCAT s3
+    '''s2 : s2 s3
           | s3'''
-    if len(p) == 4:
-        p[0] = create_concat_regex(p[1], p[3])
+    if len(p) == 3:
+        p[0] = create_concat_regex(p[1], p[2])
     else:
         p[0] = p[1]
 

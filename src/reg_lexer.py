@@ -1,22 +1,22 @@
 from ply.src.ply import lex
 
 tokens = (
-   'CONCAT',
    'UNION',
    'STR',
    'KPLUS',
    'KSTAR',
    'LPAREN',
-   'RPAREN'
+   'RPAREN',
+   'END'
 )
 
 t_UNION  = r'\|'
-t_CONCAT   = r'\+\+'
 t_STR     = r'"[^\"]*"'
 t_KSTAR   = r'\*'
 t_KPLUS   = r'\+'
 t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
+t_END     = r'\$'
 t_ignore  = ' \t'
 
 def t_error(t):
@@ -28,7 +28,7 @@ lexer = lex.lex()
 
 if __name__ == "__main__":
     # # Test it out
-    data = '"s" ++ "r"'
+    data = '"2"$'
 
     # # Give the lexer some input
     lexer.input(data)
