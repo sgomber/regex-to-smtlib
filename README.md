@@ -3,7 +3,12 @@ A tool to translate regular expressions to smt-lib constraints
 
 ## Instructions
 
-1. Just download the code and use the tool as follows:
+1. Get the code in your machine, either by downloading the zip or using `git clone`.
+   Make sure to run the following command to get the `ply` submodule (which is used by the tool):
+   ```
+   git submodule update --init
+   ```
+2. Just download the code and use the tool as follows:
 
     Command:
     ```
@@ -18,7 +23,7 @@ A tool to translate regular expressions to smt-lib constraints
 
     In PYTHONPATH, provide the path to the project (both absolute or relative work). The PYTHONPATH can also be set as a variable in the environment.
 
-2. Checkout the tests in [test-converter.py](./tests/test-converter.py) to see the present state of supported syntax.
+3. Checkout the tests in [test-converter.py](./tests/test-converter.py) to see the present state of supported syntax.
 
     The tests can be run using the following command:
     ```
