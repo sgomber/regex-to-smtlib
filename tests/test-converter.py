@@ -17,14 +17,14 @@ class TestRegexConvertor(unittest.TestCase):
         self.assertEqual(self.convertor.convert(regex), smtlib)
 
     def test_basic_char_star(self):
-            regex = '2*'
-            smtlib = '(re.* (str.to_re "2"))'
-            self.assertEqual(self.convertor.convert(regex), smtlib)
+        regex = '2*'
+        smtlib = '(re.* (str.to_re "2"))'
+        self.assertEqual(self.convertor.convert(regex), smtlib)
 
     def test_basic_char_plus(self):
-            regex = '2+'
-            smtlib = '(re.+ (str.to_re "2"))'
-            self.assertEqual(self.convertor.convert(regex), smtlib)
+        regex = '2+'
+        smtlib = '(re.+ (str.to_re "2"))'
+        self.assertEqual(self.convertor.convert(regex), smtlib)
 
     def test_basic_concat(self):
         regex = '231*'
