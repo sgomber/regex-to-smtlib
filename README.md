@@ -32,10 +32,11 @@ A tool to translate regular expressions to smt-lib constraints
 
 ## To Dos
 
-- [ ] Optimize the generated regex for char sequences ( (re.++ (str.to_re "a") (str.to_re "b")) -> (str.to_re "ab"))
+- [x] Optimize the generated regex for char sequences ( (re.++ (str.to_re "a") (str.to_re "b")) -> (str.to_re "ab"))
 - [x] Support for . (allchar)
+- [ ] See how space (' ') should be handled within regex (is ignored presently, not ideal)
 - [ ] Support for re.all and re.none (Will have to think of regex symbols for these)
-- [ ] Character Sets
+- [x] Character Sets
 - [ ] Anchoring (^$) (not sure if smtlib supports this)
 - [ ] Escaped Characters
 - [ ] Support for ? and {m,n} type syntax

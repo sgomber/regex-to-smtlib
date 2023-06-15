@@ -50,6 +50,11 @@ class TestRegexConvertor(unittest.TestCase):
         regex = '.*'
         smtlib = '(re.* re.allchar)'
         self.assertEqual(self.convertor.convert(regex), smtlib)
+    
+    def test_char_ranges(self):
+        regex = '[a-zY-Z3]+'
+        smtlib = '(re.+ (re.union (str.to_re "3") (re.range "Y" "Z") (re.range "a" "z")))'
+        self.assertEqual(self.convertor.convert(regex), smtlib)
 
 if __name__ == '__main__':
     unittest.main()

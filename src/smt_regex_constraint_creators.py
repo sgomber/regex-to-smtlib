@@ -23,3 +23,6 @@ def create_regex_from_char(c):
 
 def create_all_char_regex():
     return "re.allchar"
+
+def create_range_char_regex(c1, c2):
+    return f"(re.range \"{c1}\" \"{c2}\")"

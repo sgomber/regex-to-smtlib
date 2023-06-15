@@ -57,7 +57,8 @@ def p_s3(p):
 def p_s4(p):
     '''s4 : CHAR
           | DOT
-          | LPAREN s1 RPAREN'''
+          | LPAREN s1 RPAREN
+          | LBRAC charClasses RBRAC'''
     if len(p) == 2:
         if p[1] == ".":
             p[0] = create_all_char_regex()
@@ -65,6 +66,27 @@ def p_s4(p):
             p[0] = create_regex_from_char(p[1])
     else:
         p[0] = p[2][1]
+
+def p_charClasses(p):
+    '''charClasses : charClass charClasses 
+                   | charClass'''
+    if len(p) == 3:
+        regex_lis = p[2][0]
+        regex_lis.append(p[1])
+        combined_regex = create_union_regex(regex_lis)
+        p[0] = (regex_lis, combined_regex)
+    else:
+        regex = p[1]
+        regex_lis = [regex]
+        p[0] = (regex_lis, regex)
+
+def p_charClass(p):
+    '''charClass : CHAR HYPHEN CHAR
+                 | CHAR '''
+    if len(p) == 4:
+        p[0] = create_range_char_regex(p[1], p[3])
+    else:
+        p[0] = create_regex_from_char(p[1])
 
 # Error rule for syntax errors
 def p_error(p):
