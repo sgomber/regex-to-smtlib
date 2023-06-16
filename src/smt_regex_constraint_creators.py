@@ -1,8 +1,32 @@
 def create_concat_regex(r_lis):
-    regex = "(re.++"
+    regex = ""
+    isOnlyStrings = True
+    consecutive_chars = ""
     for r in r_lis:
-        regex = regex + " " + r
-    regex = regex + ")"
+        if r.startswith("(str.to_re"):
+            # r is of the form (str.to_re "<string>")
+            split = r.split(" ")
+
+            # split[1] is "<string>")
+            # Here, we extract <string> from split[1]
+            string = split[1][1:len(split[1])-2]
+
+            consecutive_chars += string
+        else:
+            isOnlyStrings = False
+            if consecutive_chars != "":
+                regex = regex + f"(str.to_re \"{consecutive_chars}\")"
+                consecutive_chars = ""
+            regex = regex + (" " if regex != "" else "") + r
+
+    if consecutive_chars != "":
+        regex = regex + (" " if regex != "" else "") + f"(str.to_re \"{consecutive_chars}\")"
+
+    if not isOnlyStrings:
+        # We need the ++ syntax only if we have some regex which is not string
+        # for all strings, we just concat them to str.to_re "<complete_string>"
+        regex =  "(re.++ " + regex + ")"
+
     return regex
 
 def create_union_regex(r_lis):
