@@ -45,12 +45,15 @@ def p_s2(p):
 def p_s3(p):
     '''s3 : s4 KSTAR
           | s4 KPLUS
+          | s4 OPTQ
           | s4'''
     if len(p) == 3:
         if p[2] == '+':
             p[0] = create_kplus_regex(p[1])
-        else:
+        elif p[2] == "*":
             p[0] = create_kstar_regex(p[1])
+        elif p[2] == "?":
+            p[0] = create_opt_regex(p[1])
     else:
         p[0] = p[1]
 

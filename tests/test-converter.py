@@ -60,6 +60,15 @@ class TestRegexConvertor(unittest.TestCase):
         regex = 'ab|a|22*3a'
         smtlib = '(re.union (str.to_re "ab") (str.to_re "a") (re.++ (str.to_re "2") (re.* (str.to_re "2")) (str.to_re "3a")))'
         self.assertEqual(self.convertor.convert(regex), smtlib)
+    
+    def test_optional_1(self):
+        regex = '123?'
+        smtlib = '(re.++ (str.to_re "12") (re.opt (str.to_re "3")))'
+        self.assertEqual(self.convertor.convert(regex), smtlib)
 
+    def test_optional_2(self):
+        regex = '1(23)?'
+        smtlib = '(re.++ (str.to_re "1") (re.opt (str.to_re "23")))'
+        self.assertEqual(self.convertor.convert(regex), smtlib)
 if __name__ == '__main__':
     unittest.main()

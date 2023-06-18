@@ -39,4 +39,5 @@ A tool to translate regular expressions to smt-lib constraints
 - [x] Character Sets
 - [ ] Anchoring (^$) (not sure if smtlib supports this)
 - [ ] Escaped Characters
-- [ ] Support for ? and {m,n} type syntax
+- [x] ? syntax
+- [ ] {m, n} syntax

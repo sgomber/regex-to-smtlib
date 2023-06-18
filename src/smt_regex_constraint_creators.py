@@ -50,3 +50,6 @@ def create_all_char_regex():
 
 def create_range_char_regex(c1, c2):
     return f"(re.range \"{c1}\" \"{c2}\")"
+
+def create_opt_regex(r):
+    return f"(re.opt {r})"
